@@ -72,7 +72,8 @@ class ProteinDataset(BaseDataset):
         self.cat_features = []
         self.num_features = list(range(0, self.D))
 
-        if (p := self.c.exp_artificial_missing) > 0:
+        p = self.c.exp_artificial_missing
+        if p > 0:
             self.missing_matrix = self.make_missing(p)
             # this is not strictly necessary with our code, but safeguards
             # against bugs

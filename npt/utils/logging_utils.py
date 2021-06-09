@@ -133,17 +133,21 @@ class Logger:
             f'{tb}_total_loss':
             ld['total_loss']})
 
-        if tl := ld['label'].get('total_loss', False):
+        tl = ld['label'].get('total_loss', False)
+        if tl:
             losses.update({
                 f'{tb}_label_total_loss': tl})
 
-        if tl := ld['augmentation'].get('total_loss', False):
+        tl = ld['augmentation'].get('total_loss', False)
+        if tl:
             losses.update({
                 f'{tb}_augmentation_total_loss': tl})
 
-        if val := ld['label'].get('cat_accuracy', False):
+        val = ld['label'].get('cat_accuracy', False)
+        if val:
             losses.update({f'{tb}_label_accuracy': val})
-        if val := ld['label'].get('num_mse_loss', False):
+        val = ld['label'].get('num_mse_loss', False)
+        if val:
             losses.update({f'{tb}_label_num_mse': val})
 
         losses = {i: j.detach().cpu().item() for i, j in losses.items()}

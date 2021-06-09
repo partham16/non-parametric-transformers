@@ -116,7 +116,8 @@ class BaseDataset(ABC):
             return False
         else:
             auroc_col = cat_target_cols[0]
-            if n_classes := len(np.unique(self.data_table[:, auroc_col])) > 2:
+            n_classes = len(np.unique(self.data_table[:, auroc_col]))
+            if n_classes > 2:
                 print(disable)
                 print(f'\tBecause AUROC does not (in the current implem.) '
                       f'support multiclass ({n_classes}) classification.')

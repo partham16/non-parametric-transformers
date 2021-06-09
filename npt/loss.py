@@ -279,7 +279,8 @@ class Loss:
 
                     # loss unstandardisation for regression cols
                     for extra in self.extras:
-                        if extra_loss := extra_out.get(extra, False):
+                        extra_loss = extra_out.get(extra, False)
+                        if extra_loss:
                             loss_dict[mode][extra] += extra_loss
 
         return loss_dict
